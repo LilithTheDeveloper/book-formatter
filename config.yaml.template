@@ -1,0 +1,29 @@
+# Configuration file for document processing
+input_dir: ""
+
+# Input file extensions to process
+output_dir: "" 
+
+# Input file extensions to process
+output_format: "pdf"
+
+# Output file name
+generate_single_file: true
+
+# Generate a single file for each input file
+generate_statistics: true 
+
+# Ignored files
+ignored_files: [""]
+
+# Ignored directories
+ignored_dirs: [""]
+
+# Config file path 
+config_file_path: "./config.yaml"
+# Cache
+cache_location: "./cache"
+# Lua file path
+lua_file_path: "./lua/custom_divs.lua"
+# LaTeX preamble file path
+preamble_file_path: "./latex/preamble.tex"

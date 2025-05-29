@@ -1,0 +1,23 @@
+\usepackage[a5paper,top=25mm,bottom=30mm,left=30mm,right=25mm]{geometry}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyhead[C]{\thepage} 
+\renewcommand{\headrulewidth}{0pt} 
+
+\newtcolorbox{infobox}{
+  colback=yellow!10!white,
+  colframe=yellow!70!black,
+  fonttitle=\bfseries,
+  title=Codex Florilegium,
+  breakable,
+  enhanced,
+  sharp corners,
+  boxrule=0.8pt,
+  arc=3mm,
+  left=4mm,
+  right=4mm,
+  top=2mm,
+  bottom=2mm
+}
