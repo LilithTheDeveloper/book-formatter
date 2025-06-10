@@ -11,6 +11,7 @@ type Config struct {
 	ConfigFilePath    string   `yaml:"config_file_path"`
 	LuaFilePath	  string   `yaml:"lua_file_path"`
 	PreambleFilePath string   `yaml:"preamble_file_path"`
+	PandocPdfEngine string   `yaml:"pandoc_pdf_engine"`
 }
 
 type MarkdownFile struct {

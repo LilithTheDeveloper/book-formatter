@@ -24,6 +24,7 @@ func init() {
 		GenerateStatistics: true,
 		IgnoredFiles: 	[]string{"Chapters.md"},
 		IgnoredDirs: 	[]string{"Generated", "output", "input", "build"},
+		PandocPdfEngine: "pdflatex",
 	}
 
 	cfg , err := load_config("../config.yaml")
@@ -111,7 +112,7 @@ func load_cli(config *types.Config) {
 						config.IgnoredDirs,
 						config.LuaFilePath,
 						config.PreambleFilePath,
-
+						config.PandocPdfEngine,
 					)
 					return nil
 				},

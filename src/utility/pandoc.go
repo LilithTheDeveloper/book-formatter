@@ -9,11 +9,11 @@ import (
 )
 
 
-func GenerateSinglePDF(filePath, outputPath, outputFileName, outputFormat, preambleFile, luaFilterFile string) error {
-	return RunPandoc(filePath, outputPath, outputFileName, outputFormat, preambleFile, luaFilterFile)
+func GenerateSinglePDF(filePath, outputPath, outputFileName, outputFormat, preambleFile, luaFilterFile string, pdfEngine string) error {
+	return RunPandoc(filePath, outputPath, outputFileName, outputFormat, preambleFile, luaFilterFile, pdfEngine)
 }
 
-func RunPandoc(inputFile, outputPath, outputFileName, outputFormat, preambleFile string, luaFilterFile string) error {
+func RunPandoc(inputFile, outputPath, outputFileName, outputFormat, preambleFile string, luaFilterFile string, pdfEngine string) error {
 	if inputFile == "" || outputPath == "" || outputFileName == "" || outputFormat == "" {
 		return fmt.Errorf("input file, output path, output file name, and output format must be provided")
 	}
@@ -46,6 +46,7 @@ func RunPandoc(inputFile, outputPath, outputFileName, outputFormat, preambleFile
 
 	cmdArgs = append(cmdArgs, absInput) 
 	cmdArgs = append(cmdArgs, "-o", absOut) // Use absolute path for output
+	cmdArgs = append(cmdArgs, "--pdf-engine="+pdfEngine)
 	cmdArgs = append(cmdArgs, "--include-in-header="+absHeader)
 	cmdArgs = append(cmdArgs, "--lua-filter="+absLuaFilter)
 	cmdArgs = append(cmdArgs, "--from", "markdown+native_divs", "--verbose")
@@ -60,8 +61,12 @@ func RunPandoc(inputFile, outputPath, outputFileName, outputFormat, preambleFile
 	cmd.Stderr = &stderr
 
 	err = cmd.Run()
-	if err != nil {
 
+
+	fmt.Println("Pandoc command output:", stdout.String())
+	
+
+	if err != nil {
 		fmt.Println("Pandoc command failed with error:", err)
 		return fmt.Errorf("error running pandoc: %w", err)
 	}

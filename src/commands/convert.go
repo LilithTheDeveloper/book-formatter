@@ -11,7 +11,7 @@ func Convert(
 	singleFile, generateStats bool,
 	ignoredFiles []string,
 	ignoredDirs []string,
-	luaFilePath, preambleFilePath string,
+	luaFilePath, preambleFilePath, pandoc_pdf_engine string,
 ) error {
 	log.Printf("Processing files in %s, outputting to %s in %s format", inputDir, outputDir, outputFormat)
 	file_paths, err := util.GetFiles(inputDir, ignoredFiles)
@@ -41,6 +41,8 @@ func Convert(
 	}	
 
 	markdownFiles = util.SortFilesByChapterOrder(file_paths, markdownFiles)
+
+	log.Printf("Using pdf engine: %s", pandoc_pdf_engine)
 	
 	if singleFile {
 		content := util.MergeMarkdownFiles(markdownFiles, generateStats)
@@ -52,7 +54,7 @@ func Convert(
 			log.Printf("Error writing merged markdown file: %v", err)
 		}
 
-		err = util.GenerateSinglePDF(path, outputDir, "output", outputFormat, preambleFilePath, luaFilePath)
+		err = util.GenerateSinglePDF(path, outputDir, "output", outputFormat, preambleFilePath, luaFilePath, pandoc_pdf_engine)
 		if err != nil {
 			log.Printf("Error generating PDF from merged markdown: %v", err)
 		}

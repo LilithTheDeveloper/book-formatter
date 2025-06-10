@@ -13,6 +13,9 @@ generate_single_file: true
 # Generate a single file for each input file
 generate_statistics: true 
 
+# The PDF engine to use for LaTeX processing
+pandoc_pdf_engine: "xelatex"
+
 # Ignored files
 ignored_files: [""]
 
